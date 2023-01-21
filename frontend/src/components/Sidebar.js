@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
+import InboxIcon from '@mui/icons-material/Inbox';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import PeopleIcon from '@mui/icons-material/People';
+import HelpIcon from '@mui/icons-material/Help';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Sidebar() {
   return (
     <Nav>
         <Logo>
-            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="logo" />
+            <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="logo" />
         </Logo>
 
         <NavMenu>
             <a href="/inbox">
-                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="logo" />
+                <InboxIcon />
                 <span>Inbox</span>
             </a>
             <a href="/jobs">
-                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="logo" />
+                <DynamicFeedIcon />
                 <span>Jobs</span>
             </a>
             <a href="/candidates">
-                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="logo" />
+                <PeopleIcon />
                 <span>Candidates</span>
             </a>
             <a href="/help">
-                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="logo" />
+                <HelpIcon />
                 <span>Help</span>
             </a>
         </NavMenu>
-
-    
+        <SignOut>
+            <a href="/signout">
+                <LogoutIcon />
+                <span>Log Out</span>
+            </a>
+        </SignOut>
     </Nav>
   )
 }
@@ -35,7 +44,7 @@ function Sidebar() {
 export default Sidebar
 
 const Nav = styled.div`
-    width: 260px;
+    width: 20%;
     height: 100vh;
     background-color: #f8f9fa;
     position: fixed;
@@ -65,26 +74,53 @@ const Logo = styled.a`
 const NavMenu = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 16px 0;
+    padding: 20px 30px;
+    width: 80%;
     a {
         display: flex;
+        gap: 10%;
+        border-radius: 5px;
         background-color: #f8f9fa;
         text-decoration: none;
         align-items: center;
         color: gray;
-        font-size: 14px;
-        font-weight: 500;
         font-family: 'Roboto', sans-serif;
         padding: 0 16px;
-        height: 40px;
-        img {
-            width: 20px;
-            height: 20px;
-        }
+        height: 50px;
         span {
             margin-left: 8px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 800;
+        }
+        &:hover {
+            background-color: #FCFDFE;
+            
+        }
+    }
+`;
+
+const SignOut = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    padding: 20px 30px;
+    width: 80%;
+    a {
+        display: flex;
+        gap: 10%;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        text-decoration: none;
+        align-items: center;
+        color: gray;
+        font-family: 'Roboto', sans-serif;
+        padding: 0 16px;
+        height: 50px;
+        span {
+            margin-left: 8px;
+            font-size: 14px;
+            font-weight: 800;
         }
         &:hover {
             background-color: #ACABAA;
