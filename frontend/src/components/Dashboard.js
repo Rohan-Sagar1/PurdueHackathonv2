@@ -1,16 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Modal from 'react-modal';
 import styled from 'styled-components'
 import Card from './Card'
 
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+Modal.setAppElement('#root');
+
 function Dashboard() {
-    const [filter, setFilter] = React.useState('all')
+    let subtitle;
+    const [filter, setFilter] = useState('all');
+    const [keywords, setKeywords] = useState('');
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState([]);
 
     const handleFilterChange = (e) => {
-        setFilter(e.target.value)
+        setFilter(e.target.value);
     }
 
-    // create fake data in an indexed way so we can use map
-    const data = [
+    const handleKeywordSearch = (e) => {
+        setKeywords(e.target.value);
+    }
+
+    function openModal() {
+        setIsOpen(true);
+      }
+    
+      function afterOpenModal() {
+        subtitle.style.color = '#f00';
+      }
+    
+      function closeModal() {
+        setIsOpen(false);
+      }
+
+    const filteredData = data.filter(item => item.title.includes(keywords));
+
+    const dummy = [
         {
             jobTitle: 'Software Engineer',
             companyName: 'Google',
@@ -64,22 +99,42 @@ function Dashboard() {
     return (
         <>
         <NavMenu>
-            <LeftMenu>
-                <span>45 results found</span>
-            </LeftMenu>
-            <RightMenu>
-                <select value={filter} onChange={handleFilterChange}>
+        <LeftMenu>
+            <span>{filteredData.length} results found</span>
+        </LeftMenu>
+        <RightMenu>
+            <select value={filter} onChange={handleFilterChange}>
                 <option value="all">All</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
+                <option value="keywords">Filter by keywords</option>
+                <option value="other">Filter by other</option>
             </select>
-
+            {filter === 'keywords' && <input type="text" placeholder="Enter keywords" onChange={handleKeywordSearch} />}
+            {filter === 'other' && 
+                <button onClick={openModal}>Advanced Filter</button>}
+            <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
+                <button onClick={closeModal}>close</button>
+                <div>I am a modal</div>
+                <form>
+                    <input />
+                    <button>tab navigation</button>
+                    <button>stays</button>
+                    <button>inside</button>
+                    <button>the modal</button>
+                </form>
+            </Modal>
             <button>Cards</button>
             <button>Table</button>
-            </RightMenu>
-        </NavMenu>
+        </RightMenu>
+    </NavMenu>
         <Cards>
-            {data.map((item, index) => (
+            {dummy.map((item, index) => (
                 <Card
                     key={index}
                     jobTitle={item.jobTitle}
