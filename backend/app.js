@@ -1,3 +1,12 @@
+// POST localhost:80/login/new/submit/
+//{
+//     "password": "Rohan420",
+//     "email": "rohan@gmail.com",
+//     "firstname": "kevin",
+//     "lastname": "loiselle",
+//     "tags": "tag1,tag2,tag3"
+// }
+
 const { Pool } = require("pg");
 const { v4: uuidv4 } = require("uuid");
 // const { https } = require("http");
