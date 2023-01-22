@@ -110,6 +110,12 @@ app.post('/login', async (req, res) => {
 app.post('/login/submit', async (req, res) => {
    // submit login details
 
+    if(await db.userExists(CLIENT, req.body.id)) {
+        // user exists; redirect
+        res.send("200 already logged in");
+        return;
+    }
+
     const email = req.body.email;
     const password = req.body.password;
 
