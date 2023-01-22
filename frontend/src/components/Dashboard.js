@@ -51,6 +51,14 @@ function Dashboard() {
             spaceRemaining: 5,
             maxApplicants: 10
         },
+        {
+            jobTitle: 'Blockchain Engineer',
+            companyName: 'Microsoft',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            location: 'Redmond, WA',
+            spaceRemaining: 5,
+            maxApplicants: 10
+        },
     ]
 
     return (
@@ -82,10 +90,6 @@ function Dashboard() {
                     maxApplicants={item.maxApplicants}
                 />
             ))}
-        
-
-
-            
         </Cards>
     </>
     )
@@ -106,7 +110,6 @@ const LeftMenu = styled.div`
     width: 50%;
 `;
 
-// right menu is on the right side of the page
 const RightMenu = styled.div`
     display: flex;
     flex-direction: row;
@@ -141,7 +144,7 @@ const Cards = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 20px 30px;
+    padding: 0px 30px;
     width: 100%;
 
     @media (min-width: 1200px) { /* desktop */

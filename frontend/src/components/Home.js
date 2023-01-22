@@ -25,7 +25,6 @@ const Container = styled.div`
     position: absolute;
     right: 0;
     bottom: 0;
-
 `;
 
 

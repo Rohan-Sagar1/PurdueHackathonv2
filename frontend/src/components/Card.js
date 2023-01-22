@@ -36,12 +36,12 @@ export default Card
 
 const Container = styled.div`
     width: 13%;
-    height: 300px;
+    height: auto;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 20px;
+    margin: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
