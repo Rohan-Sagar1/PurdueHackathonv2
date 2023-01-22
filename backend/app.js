@@ -22,6 +22,7 @@ const DB_URL = process.env.DATABASE_URL;
 // global variables
 let CLIENT = undefined;
 (async () => {
+    console.log(DB_URL);
     CLIENT = await db.getClient(DB_URL);
     console.log("yuh")
 })();
@@ -109,6 +110,12 @@ app.post('/login', async (req, res) => {
 app.post('/login/submit', async (req, res) => {
    // submit login details
 
+    if(await db.userExists(CLIENT, req.body.id)) {
+        // user exists; redirect
+        res.send("200 already logged in");
+        return;
+    }
+
     const email = req.body.email;
     const password = req.body.password;
 
@@ -124,6 +131,7 @@ app.post('/login/submit', async (req, res) => {
             res.send("request failed");
         } else {
             // request success
+            console.log(res1.rows);
             if (res1.rows === undefined || res1.rows.length === 0) {
                 // didnt find any users
                 // no user found with given id
@@ -320,7 +328,7 @@ app.post('/posts/create/', async (req, res) => {
 });
 
 // submit post
-app.post('/posts/create/submit', async (req, res) => {
+app.post('/posts/create/submit/', async (req, res) => {
     if(!await db.userExists(CLIENT, req.body.id)) {
         // redirect to login page
     }
